@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+
+    </head>
+    <body>
+        <header>
+            <div>
+                <a href="{{ path('main_home') }}">Home</a>
+                {% if not app.user  %}
+                <a href="{{ path('app_login') }}"><button type="button" >Se connecter</button></a>
+                <a href="{{ path('app_register') }}"><button type="button" >S'inscrire</button></a>
+                {% endif %}
+                {% if app.user %}
+                    <a href="{{ path('app_logout') }}">Se deconnecte ({{ app.user.username }})</a>
+                {% endif %}
+            </div>
+        </header>
+        {% block body %}{% endblock %}
+    </body>
+</html>
